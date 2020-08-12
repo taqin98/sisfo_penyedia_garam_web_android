@@ -95,13 +95,15 @@ $query_builder = TRUE;
 // 	'save_queries' => TRUE
 // );
 
+$url = getenv('JAWSDB_MARIA_URL');
+$dbparts = parse_url($url);
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'x40p5pp7n9rowyv6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-	'username' => 'galesbg23tqr06le',
-	'password' => 'egrox9nb842dv5uo',
-	'database' => 'r0ovxccpqtgme0tk',
+	'hostname' => $dbparts['host'],
+	'username' => $dbparts['user'],
+	'password' => $dbparts['pass'];
+	'database' => ltrim($dbparts['path'],'/'),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

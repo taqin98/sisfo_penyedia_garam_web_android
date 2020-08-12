@@ -95,15 +95,13 @@ $query_builder = TRUE;
 // 	'save_queries' => TRUE
 // );
 
-//Add this to fetch the CLEARDB_DATABASE_URL
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => $url['host'],
-	'username' => $url['user'],
-	'password' => $url['pass'],
-	'database' => substr($url["path"], 1),
+	'hostname' => 'x40p5pp7n9rowyv6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+	'username' => 'galesbg23tqr06le',
+	'password' => 'egrox9nb842dv5uo',
+	'database' => 'r0ovxccpqtgme0tk',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

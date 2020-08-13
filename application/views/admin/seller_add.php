@@ -7,21 +7,22 @@
 $row  = $this->db->query('SELECT max(user_id) as maxSEL FROM users');
 $users = $row->result();
 $kodeSEL = $users[0]->maxSEL;
+// echo $kodeSEL . ' DATA';
 
-$noUrut = (int) substr($kodeSEL, 3, 3);
+$noUrut = (int) substr($kodeSEL, 3, 4);
 $noUrut++;
 $char = "USR";
-$RM = $char . sprintf("%1s", $noUrut);
+$RM = $char . sprintf("%04s", $noUrut);
 
 
 $query = $this->db->query('SELECT max(profile_id) as maxPRO FROM users');
 $result = $query->result();
 $kodePRO = $result[0]->maxPRO;
 
-$noPRO = (int) substr($kodePRO, 3, 3);
+$noPRO = (int) substr($kodePRO, 3, 4);
 $noPRO++;
 $charPRO = "PRO";
-$profile_id = $charPRO . sprintf("%1s", $noPRO);
+$profile_id = $charPRO . sprintf("%04s", $noPRO);
 
 // var_dump($RM, $profile_id);
 ?>

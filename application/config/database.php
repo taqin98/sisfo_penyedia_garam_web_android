@@ -95,6 +95,8 @@ $query_builder = TRUE;
 // 	'save_queries' => TRUE
 // );
 
+
+// config deploy heroku
 $url = getenv('JAWSDB_MARIA_URL');
 $dbparts = parse_url($url);
 

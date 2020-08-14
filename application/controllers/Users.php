@@ -28,7 +28,7 @@ class Users extends CI_Controller {
 	public function index()
 	{
 		// $this->load->view('welcome_message');
-		$this->load->view('welcome');
+		$this->load->view('login');
 	}
 
 	public function login()
@@ -43,17 +43,19 @@ class Users extends CI_Controller {
 
 		if($query->num_rows() == 1) {
             //ambil data user berdasar username
-            $row  = $this->db->query('SELECT username, level, information FROM users where username = "'.$user.'"');
+            $row  = $this->db->query('SELECT user_id,username, level, information FROM users where username = "'.$user.'"');
             $user     = $row->row();
             $data_username   = $user->username;
             $data_userlevel   = $user->level;
             $data_status   = $user->information;
+            $data_userid   = $user->user_id;
 
             //set session user
             $this->session->set_userdata('username', $data_username);
             $this->session->set_userdata('id_login', uniqid(rand()));
             $this->session->set_userdata('level', $data_userlevel);
             $this->session->set_userdata('status', $data_status);
+            $this->session->set_userdata('user_id', $data_userid);
             
             switch ($data_userlevel) {
 				case 1:
@@ -75,7 +77,7 @@ class Users extends CI_Controller {
         }else{
  
              //jika tidak ada, set notifikasi dalam flashdata.
-             $this->session->set_flashdata('sukses','Username atau password anda salah, silakan coba lagi.. ');
+             $this->session->set_flashdata('sukses','Username atau password anda salah<br>silakan coba lagi.. ');
  
              //redirect ke halaman login
              redirect('users/index');
@@ -84,10 +86,67 @@ class Users extends CI_Controller {
       
 	}
 
+	public function register()
+	{
+		$row  = $this->db->query('SELECT max(user_id) as maxSEL FROM users');
+		$users = $row->result();
+		$kodeSEL = $users[0]->maxSEL;
+
+		$noUrut = (int) substr($kodeSEL, 3, 4);
+		$noUrut++;
+		$char = "USR";
+		$RM = $char . sprintf("%04s", $noUrut);
+
+
+		$query = $this->db->query('SELECT max(profile_id) as maxPRO FROM users');
+		$result = $query->result();
+		$kodePRO = $result[0]->maxPRO;
+
+		$noPRO = (int) substr($kodePRO, 3, 4);
+		$noPRO++;
+		$charPRO = "PRO";
+		$profile_id = $charPRO . sprintf("%04s", $noPRO);
+
+		// var_dump($RM, $profile_id);
+
+		$array['data'] = (object) array('user_id' => $RM, 'profile_id' => $profile_id,);
+
+		$this->load->view('register', $array);
+	}
+
+	public function account_add()
+	{
+		$hash = md5($this->input->post('password', TRUE));
+		$user_data = array(
+			'user_id' => $this->input->post('userid', TRUE),
+			'email' => $this->input->post('email', TRUE),
+			'username' => $this->input->post('username', TRUE),
+			'password' => $hash,
+			'level' => 3,
+			'information' => 'user',
+			'profile_id' => $this->input->post('profileid', TRUE)
+		);
+
+		// var_dump($user_data);
+
+		$query = $this->db->get_where('users',array('email'=> $this->input->post('email', TRUE)) );
+		if ($query->num_rows() == 1) {
+			$this->session->set_flashdata('validation','Email Sudah digunakan', 'danger');
+         	return redirect(site_url('users/register'));
+		} else {
+			$this->db->insert('users', $user_data);
+
+			$this->session->set_flashdata('success','Akun Berhasil didaftarkan');
+			return redirect(site_url('users/register'));
+		}
+	}
+
 	public function logout() {
          $this->session->unset_userdata('username');
          $this->session->unset_userdata('id_login');
-         $this->session->unset_userdata('id');
+         $this->session->unset_userdata('level');
+         $this->session->unset_userdata('status');
+         $this->session->unset_userdata('user_id');
          $this->session->set_flashdata('sukses','Anda berhasil logout');
          redirect(site_url('users/index'));
     }
@@ -97,10 +156,10 @@ class Users extends CI_Controller {
          if($this->session->userdata('username') == '') {
  
              //set notifikasi
-             $this->session->set_flashdata('gagal','Anda belum login');
+             $this->session->set_flashdata('sukses','Anda belum login');
  
              //alihkan ke halaman login
-             redirect(site_url('users/index'));
+             redirect('users/index');
          } else {
             $this->session->set_flashdata('sukses','Selamat Datang di GaramApp');
          	$this->load->view('users/dashboard_user');
@@ -115,7 +174,7 @@ class Users extends CI_Controller {
              $this->session->set_flashdata('sukses','Anda belum login');
  
              //alihkan ke halaman login
-             redirect(site_url('users/index'));
+             redirect('users/index');
          } else {
             $this->session->set_flashdata('sukses','Selamat Datang di GaramApp');
          	$this->load->view('seller/dashboard_seller');
@@ -130,7 +189,7 @@ class Users extends CI_Controller {
              $this->session->set_flashdata('sukses','Anda belum login');
  
              //alihkan ke halaman login
-             redirect(site_url('users/index'));
+             redirect('users/index');
          } else {
             $this->session->set_flashdata('sukses','Selamat Datang di GaramApp');
          	$this->load->view('admin/dashboard_admin');
@@ -327,6 +386,30 @@ class Users extends CI_Controller {
 			$this->session->set_flashdata('notification','Data gagal diupdate');
 			return redirect(site_url('users/dashboard_admin?content=buyer_read'));
 		}
+	}
+
+	public function user_update_detail()
+	{
+		$userid = $this->input->post('userid', TRUE);
+		$profile_data = array(
+			'profile_id' => $this->input->post('profileid', TRUE),
+			'full_name' => $this->input->post('fullname', TRUE),
+			'address' => $this->input->post('alm', TRUE),
+			'telepon' => $this->input->post('hp', TRUE)
+		);
+
+		$this->db->insert('profile', $profile_data);
+
+		if ($this->db->error()['message'] == ''){
+			$this->session->set_flashdata('notification','Data berhasil diupdate');
+			// echo "berhail";
+			return redirect(site_url("users/dashboard_user?content=user_detail&userid=$userid"));
+		}else{
+			$this->session->set_flashdata('notification','Data gagal diupdate');
+			// echo $this->db->error()['message'];
+			return redirect(site_url('users/dashboard_user?content=user_detail&userid="'.$userid.'"'));
+		}
+
 	}
 
 

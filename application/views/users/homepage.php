@@ -28,7 +28,7 @@
     					infowindow.setContent('Name : <strong><?= $query[$i]->full_name ?></strong><br>' +
     						'Alamat : <?= $query[$i]->address ?><br' +
     						'Persediaan : <?= $query[$i]->stok ?> ton<br>' +
-    						'<a href="?content=user_detail&userid=<?= $query[$i]->user_id ?>" class="btn btn-primary btn-sm mt-3 form-control">Detail</a>');
+    						'<a href="?content=seller_detail&userid=<?= $query[$i]->user_id ?>" class="btn btn-primary btn-sm mt-3 form-control">Detail</a>');
     					infowindow.open(map, marker);
     				}
     			})(marker, i));

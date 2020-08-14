@@ -1,7 +1,3 @@
-<?php
-if ($this->session->userdata('level') == 3) {
-	?>
-
 <!doctype html>
 <html lang="en">
 
@@ -50,26 +46,18 @@ if ($this->session->userdata('level') == 3) {
         .profile-head .avatar {
         	margin-right: 16px;
         }
+        body { background: #ffffff }
 
     </style>
 </head>
 <body>
     <!-- App Header -->
-    <div class="appHeader scrolled is-active text-white" style="background: #1e74fda1">
-    	<div class="left">
-    		<a href="#" class="headerButton" hidden="" data-toggle="modal" data-target="#sidebarPanel">
-    			<ion-icon name="menu-outline"></ion-icon>
-    		</a>
-    	</div>
-    	<div class="pageTitle">
-    		<!-- Rotib Al Hadad -->
-    		GaramApp
-    	</div>
-    	<div class="right">
-    		<a href="javascript:;" class="headerButton toggle-searchbox" hidden="">
-    			<ion-icon name="search-outline"></ion-icon>
-    		</a>
-    	</div>
+    <div class="appHeader no-border transparent position-absolute">
+        <div class="left">
+        </div>
+        <div class="pageTitle text-white"></div>
+        <div class="right">
+        </div>
     </div>
     <!-- * App Header -->
 
@@ -90,50 +78,106 @@ if ($this->session->userdata('level') == 3) {
     <!-- * Search Component -->
 
     <!-- App Capsule --> <!-- Content -->
-    <div id="appCapsule">
-    	<?php $this->load->view('users/dashboard_content'); ?>
-        <div class="section mb-0 p-0">
-            
-            <!-- <div class="card p-0" id="cardContent">
-                <div class="card-body main-content p-5px d-flex justify-content-between align-items-end" id="bodyContent">
-                </div>
-            </div> -->
-        </div>
-        <div id="toast-4" class="toast-box toast-top">
-            <div class="in">
-                <div class="text">
-                    Auto closing in 2 seconds.
-                </div>
+    <div id="appCapsule" class="pt-0">
+
+        <div class="login-form mt-1">
+            <div class="section">
+                <img src="https://mobilekit.bragherstudio.com/view7/assets/img/sample/photo/vector4.png" alt="image" class="form-image">
+            </div>
+            <div class="section mt-1">
+                <h1>Get started</h1>
+                <h4>Fill the form to log in</h4>
+            </div>
+            <div class="section mt-1 mb-5">
+            	<?php
+            	if($this->session->flashdata('sukses')){
+            		?>
+            		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert" style="text-align: left;">
+            			<?= $this->session->flashdata('sukses'); ?>
+            			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            				<span aria-hidden="true">&times;</span>
+            			</button>
+            		</div>
+            		<?php
+            	}
+            	?>
+                <form method="POST" action="<?= base_url('users/login') ?>">
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-control" id="username" placeholder="Username" name="username" required="">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+
+                    <div class="form-links mt-2">
+                        <div>
+                            <a href="<?= base_url('users/register') ?>">Register Now</a>
+                        </div>
+                        <!-- <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div> -->
+                    </div>
+
+                    <div class="form-button-group">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Log in</button>
+                    </div>
+
+                </form>
             </div>
         </div>
 
 
-        <!-- app footer -->
-
-        <!-- * app footer -->
-
     </div>
+    <!-- <div id="appCapsule">
+
+        <div class="login-form">
+            <div class="section">
+                <h1 class="text-white">Login</h1>
+                <h4 class="text-white">Fill the form to join us</h4>
+            </div>
+            <div class="section mt-2 mb-5">
+            	
+                <form method="POST" action="<?= base_url('users/login'); ?>">
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="text" name="username" class="form-control" id="name1" placeholder="Username" required="">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+
+                    <div class="form-button-group">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div> -->
     <!-- * App Capsule -->
 
 
     <!-- App Bottom Menu -->
-    <div class="appBottomMenu">
-    	<a href="?content=user_detail&userid=<?= $this->session->userdata('user_id') ?>" class="item" id="__prevPage">
-    		<div class="col">
-    			<ion-icon name="person-circle-outline"></ion-icon>
-    		</div>
-    	</a>
-    	<a href="<?= base_url('users/dashboard_user') ?>" class="item">
-    		<div class="col">
-    			<ion-icon name="apps-outline"></ion-icon>
-    		</div>
-    	</a>
-    	<a href="<?= base_url('users/logout') ?>" class="item" id="__nextPage">
-    		<div class="col">
-    			<ion-icon name="log-out-outline"></ion-icon>
-    		</div>
-    	</a>
-    </div>
     <!-- * App Bottom Menu -->
 
     <!-- App Sidebar -->
@@ -231,19 +275,10 @@ if ($this->session->userdata('level') == 3) {
     <!-- Ionicons -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.0.0/dist/ionicons/ionicons.esm.js" async></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.0.0/dist/ionicons/ionicons.js" async></script>
-</body>
-</html>
-<?php
-} else {
-	?>
-	Access Denied. 404<br>
-	<button onclick="goBack()">Go Back</button>
-
-	<script>
+    <script>
 		function goBack() {
 			window.history.back();
 		}
 	</script>
-	<?php
-}
-?>
+</body>
+</html>

@@ -6,8 +6,16 @@ switch ($_GET['content']) {
 		redirect('users/dashboard_admin');
 		break;
 
+	case 'seller_detail':
+		$this->load->view('users/seller_detail');
+		break;
+
 	case 'user_detail':
 		$this->load->view('users/user_detail');
+		break;
+
+	case 'user_edit':
+		$this->load->view('users/user_edit');
 		break;
 	
 	default:

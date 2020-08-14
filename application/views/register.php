@@ -1,7 +1,3 @@
-<?php
-if ($this->session->userdata('level') == 3) {
-	?>
-
 <!doctype html>
 <html lang="en">
 
@@ -50,26 +46,24 @@ if ($this->session->userdata('level') == 3) {
         .profile-head .avatar {
         	margin-right: 16px;
         }
+        body { background: #ffffff }
 
     </style>
 </head>
 <body>
     <!-- App Header -->
-    <div class="appHeader scrolled is-active text-white" style="background: #1e74fda1">
-    	<div class="left">
-    		<a href="#" class="headerButton" hidden="" data-toggle="modal" data-target="#sidebarPanel">
-    			<ion-icon name="menu-outline"></ion-icon>
-    		</a>
-    	</div>
-    	<div class="pageTitle">
-    		<!-- Rotib Al Hadad -->
-    		GaramApp
-    	</div>
-    	<div class="right">
-    		<a href="javascript:;" class="headerButton toggle-searchbox" hidden="">
-    			<ion-icon name="search-outline"></ion-icon>
-    		</a>
-    	</div>
+    <div class="appHeader no-border transparent position-absolute">
+        <div class="left">
+            <a href="javascript:;" class="headerButton goBack" onclick="goBack()">
+                <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">GaramApp</div>
+        <div class="right">
+            <a href="<?= base_url('users') ?>" class="headerButton">
+                Login
+            </a>
+        </div>
     </div>
     <!-- * App Header -->
 
@@ -91,49 +85,97 @@ if ($this->session->userdata('level') == 3) {
 
     <!-- App Capsule --> <!-- Content -->
     <div id="appCapsule">
-    	<?php $this->load->view('users/dashboard_content'); ?>
-        <div class="section mb-0 p-0">
-            
-            <!-- <div class="card p-0" id="cardContent">
-                <div class="card-body main-content p-5px d-flex justify-content-between align-items-end" id="bodyContent">
-                </div>
-            </div> -->
-        </div>
-        <div id="toast-4" class="toast-box toast-top">
-            <div class="in">
-                <div class="text">
-                    Auto closing in 2 seconds.
-                </div>
+
+        <div class="login-form">
+            <div class="section">
+                <h1>Register</h1>
+                <h4>Fill the form to join us</h4>
+            </div>
+            <div class="section mt-2 mb-5">
+            	<?php 
+            	if($this->session->flashdata('validation')){
+            		?>
+            		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            			<?= $this->session->flashdata('validation'); ?>
+            			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            				<span aria-hidden="true">&times;</span>
+            			</button>
+            		</div>
+            		<?php
+            	}
+
+            	if($this->session->flashdata('success')){
+            		?>
+            		<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            			<?= $this->session->flashdata('success'); ?>
+            			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            				<span aria-hidden="true">&times;</span>
+            			</button>
+            		</div>
+            		<?php
+            	}
+            	?>
+                <form method="POST" action="<?= base_url('users/account_add') ?>">
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                        	<input type="hidden" name="userid" value="<?= $data->user_id ?>">
+                        	<input type="hidden" name="profileid" value="<?= $data->profile_id ?>">
+                            <input type="email" name="email" class="form-control" id="email1" placeholder="Alamat Email" required="">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="text" name="username" class="form-control" id="name1" placeholder="Username" required="">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="password" name="password2" class="form-control" id="password2" placeholder="Ulangi Password" required="">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+
+                    <div class=" mt-1 text-left">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customChecka1" required="">
+                            <label class="custom-control-label text-muted" for="customChecka1">I Agree <a href="javascript:;">Terms &amp; Conditions</a></label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-button-group">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Register</button>
+                    </div>
+
+                </form>
             </div>
         </div>
-
-
-        <!-- app footer -->
-
-        <!-- * app footer -->
-
     </div>
     <!-- * App Capsule -->
 
 
     <!-- App Bottom Menu -->
-    <div class="appBottomMenu">
-    	<a href="?content=user_detail&userid=<?= $this->session->userdata('user_id') ?>" class="item" id="__prevPage">
-    		<div class="col">
-    			<ion-icon name="person-circle-outline"></ion-icon>
-    		</div>
-    	</a>
-    	<a href="<?= base_url('users/dashboard_user') ?>" class="item">
-    		<div class="col">
-    			<ion-icon name="apps-outline"></ion-icon>
-    		</div>
-    	</a>
-    	<a href="<?= base_url('users/logout') ?>" class="item" id="__nextPage">
-    		<div class="col">
-    			<ion-icon name="log-out-outline"></ion-icon>
-    		</div>
-    	</a>
-    </div>
     <!-- * App Bottom Menu -->
 
     <!-- App Sidebar -->
@@ -231,19 +273,10 @@ if ($this->session->userdata('level') == 3) {
     <!-- Ionicons -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.0.0/dist/ionicons/ionicons.esm.js" async></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.0.0/dist/ionicons/ionicons.js" async></script>
-</body>
-</html>
-<?php
-} else {
-	?>
-	Access Denied. 404<br>
-	<button onclick="goBack()">Go Back</button>
-
-	<script>
+    <script>
 		function goBack() {
 			window.history.back();
 		}
 	</script>
-	<?php
-}
-?>
+</body>
+</html>

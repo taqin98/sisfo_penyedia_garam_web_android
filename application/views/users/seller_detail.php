@@ -1,8 +1,11 @@
 <?php
 $userid = $_GET['userid'];
-$query 	= $this->db->query('SELECT * from users join profile using(profile_id) join garam_stock where users.user_id="'.$userid.'"');
+$query 	= $this->db->query('SELECT * from users join profile using(profile_id) where users.user_id="'.$userid.'"');
 $data 	= $query->row();
 $array['data'] = $data;
+
+$sql = $this->db->get_where('garam_stock', array('user_id' => $userid));
+$stokdata = $sql->result()[0];
 
 ?>
 
@@ -112,7 +115,7 @@ $array['data'] = $data;
         				</span>
         				<div class="in ml-3">
         					<div>Jumlah Persediaan</div>
-        					<span class="badge badge-primary"><?= $data->stok ?> Ton</span>
+        					<span class="badge badge-primary"><?= $stokdata->stok ?> Ton</span>
         				</div>
         			</div>
         		</li>

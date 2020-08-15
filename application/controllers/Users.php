@@ -147,7 +147,7 @@ class Users extends CI_Controller {
          $this->session->unset_userdata('level');
          $this->session->unset_userdata('status');
          $this->session->unset_userdata('user_id');
-         $this->session->set_flashdata('sukses','Anda berhasil logout');
+         $this->session->set_flashdata('logout','Anda berhasil logout');
          redirect(site_url('users/index'));
     }
 
@@ -258,12 +258,20 @@ class Users extends CI_Controller {
 
 	public function seller_update()
 	{
+		$pass = $this->input->post('password', TRUE);
+		$newPass = '';
 		$hash = md5($this->input->post('password', TRUE));
+
+		$query = $this->db->get_where('users', array('user_id' => $this->input->post('userid', TRUE)));
+		$oldData = $query->result()[0];
+
+		$newPass = ($oldData->password == $pass) ? $oldData->password : $hash;
+
 		$user_data = array(
 			'user_id' => $this->input->post('userid', TRUE),
 			'email' => $this->input->post('email', TRUE),
 			'username' => $this->input->post('username', TRUE),
-			'password' => $hash,
+			'password' => $newPass,
 			'level' => $this->input->post('level', TRUE),
 			'information' => $this->input->post('info', TRUE),
 			'profile_id' => $this->input->post('profileid', TRUE)
@@ -282,6 +290,8 @@ class Users extends CI_Controller {
 			'user_id' => $this->input->post('userid', TRUE),
 			'stok' => $this->input->post('stok', TRUE)
 		);
+
+		// var_dump('pass from input '.$pass .'<br>', 'New Password ' .$newPass . '<br>');
 
 		$this->db->where('user_id', $this->input->post('userid', TRUE));
 		$this->db->update('users', $user_data);
@@ -391,6 +401,7 @@ class Users extends CI_Controller {
 	public function user_update_detail()
 	{
 		$userid = $this->input->post('userid', TRUE);
+		$profileid = $this->input->post('profileid', TRUE);
 		$profile_data = array(
 			'profile_id' => $this->input->post('profileid', TRUE),
 			'full_name' => $this->input->post('fullname', TRUE),
@@ -398,7 +409,8 @@ class Users extends CI_Controller {
 			'telepon' => $this->input->post('hp', TRUE)
 		);
 
-		$this->db->insert('profile', $profile_data);
+		$this->db->where('profile_id', $profileid);
+		$this->db->update('profile', $profile_data);
 
 		if ($this->db->error()['message'] == ''){
 			$this->session->set_flashdata('notification','Data berhasil diupdate');
@@ -410,6 +422,62 @@ class Users extends CI_Controller {
 			return redirect(site_url('users/dashboard_user?content=user_detail&userid="'.$userid.'"'));
 		}
 
+	}
+
+	public function seller_update_detail()
+	{
+		$userid = $this->input->post('userid', TRUE);
+		$pass = $this->input->post('password', TRUE);
+		$newPass = '';
+		$hash = md5($this->input->post('password', TRUE));
+
+		$query = $this->db->get_where('users', array('user_id' => $this->input->post('userid', TRUE)));
+		$oldData = $query->result()[0];
+
+		$newPass = ($oldData->password == $pass) ? $oldData->password : $hash;
+
+		$user_data = array(
+			'user_id' => $this->input->post('userid', TRUE),
+			'email' => $this->input->post('email', TRUE),
+			'username' => $this->input->post('username', TRUE),
+			'password' => $newPass,
+			'level' => $this->input->post('level', TRUE),
+			'information' => $this->input->post('info', TRUE),
+			'profile_id' => $this->input->post('profileid', TRUE)
+		);
+
+		$profile_data = array(
+			'profile_id' => $this->input->post('profileid', TRUE),
+			'full_name' => $this->input->post('fullname', TRUE),
+			'address' => $this->input->post('alm', TRUE),
+			'telepon' => $this->input->post('hp', TRUE),
+			'lng' => $this->input->post('lng', TRUE),
+			'lat' => $this->input->post('lat', TRUE)
+		);
+
+		$stok_data = array(
+			'user_id' => $this->input->post('userid', TRUE),
+			'stok' => $this->input->post('stok', TRUE)
+		);
+
+		// var_dump('pass from input '.$pass .'<br>', 'New Password ' .$newPass . '<br>');
+
+		$this->db->where('user_id', $this->input->post('userid', TRUE));
+		$this->db->update('users', $user_data);
+
+		$this->db->where('profile_id', $this->input->post('profileid', TRUE));
+		$this->db->update('profile', $profile_data);
+
+		$this->db->where('user_id', $this->input->post('userid', TRUE));
+		$this->db->update('garam_stock', $stok_data);
+
+		if ($this->db->error()['message'] == ''){
+			$this->session->set_flashdata('notification','Data berhasil diupdate');
+			return redirect(site_url("users/dashboard_seller?content=seller_detail&userid=$userid"));
+		}else{
+			$this->session->set_flashdata('notification','Data gagal diupdate');
+			return redirect(site_url("users/dashboard_seller?content=seller_edit&userid=$userid"));
+		}
 	}
 
 

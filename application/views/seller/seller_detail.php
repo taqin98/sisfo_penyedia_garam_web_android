@@ -3,6 +3,8 @@ $userid = $_GET['userid'];
 $query 	= $this->db->query('SELECT * from users join profile using(profile_id) where users.user_id="'.$userid.'"');
 $data 	= $query->row();
 $array['data'] = $data;
+$sql = $this->db->get_where('garam_stock', array('user_id' => $userid));
+$stokdata = $sql->result()[0];
 
 // var_dump($data);
 if ($data == NULL) {
@@ -34,23 +36,11 @@ if ($data == NULL) {
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<?php
 } else {
-	?>
-	<?php 
-	if($this->session->flashdata('notification')){
-		?>
-		<div class="alert alert-success alert-dismissible fade show" role="alert">
-			<?= $this->session->flashdata('notification'); ?>
-			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<?php
-	}
 	?>
 	<div class="card p-0" id="cardContent">
 		<div class="card-body" id="bodyContent">
@@ -107,10 +97,42 @@ if ($data == NULL) {
 							</div>
 						</div>
 					</li>
+					<li>
+						<div class="item">
+							<span class="iconedbox">
+								<ion-icon name="location"></ion-icon>
+							</span>
+							<div class="in ml-3">
+								<div>Location</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="item">
+							<span class="iconedbox" style="color: white">
+								<ion-icon name="compass"></ion-icon>
+							</span>
+							<div class="in ml-3">
+								<span class="float-left">Lat: <?= $data->lat ?></span>
+								<span class="float-right">Lng : <?= $data->lng ?></span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="item">
+							<span class="iconedbox">
+								<ion-icon name="basket"></ion-icon>
+							</span>
+							<div class="in ml-3">
+								<div>Jumlah Persediaan</div>
+								<span class="badge badge-primary"><?= $stokdata->stok ?> Ton</span>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div>
 			<div class="section mb-2">
-				<a href="?content=user_edit&userid=<?= $userid ?>" class="btn btn-primary col"><ion-icon name="create-outline"></ion-icon> Update Profile</a>
+				<a href="?content=seller_edit&userid=<?= $userid ?>" class="btn btn-primary col"><ion-icon name="create-outline"></ion-icon> Update Profile</a>
 			</div>
 		</div>
 	</div>

@@ -3,6 +3,8 @@ $userid = $_GET['userid'];
 $query 	= $this->db->query('SELECT * from users join profile using(profile_id) join garam_stock where users.user_id="'.$userid.'"');
 $data 	= $query->row();
 $array['data'] = $data;
+$sql = $this->db->get_where('garam_stock', array('user_id' => $userid));
+$stokdata = $sql->result()[0];
 ?>
 <div class="row mt-2">
 	<div class="col-md-6">
@@ -58,7 +60,7 @@ $array['data'] = $data;
 				<ul class="list-group list-group-horizontal">
 					<li class="list-group-item col-3">Stok</li>
 					<li class="list-group-item">:</li>
-					<li class="list-group-item col-lg"><?= $data->stok ?> ton</li>
+					<li class="list-group-item col-lg"><?= $stokdata->stok ?> ton</li>
 				</ul>
 			</div>
 		</div>

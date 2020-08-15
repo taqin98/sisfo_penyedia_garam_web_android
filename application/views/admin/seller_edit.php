@@ -5,10 +5,12 @@
 </style>
 <?php
 $userid = $_GET['userid'];
-$query 	= $this->db->query('SELECT * from users join profile using(profile_id) join garam_stock where users.user_id="'.$userid.'"');
+$query 	= $this->db->query('SELECT * from users join profile using(profile_id) where users.user_id="'.$userid.'"');
 $data 	= $query->row();
 
 $array['data'] = $data;
+$sql = $this->db->get_where('garam_stock', array('user_id' => $userid));
+$stokdata = $sql->result()[0];
 ?>
 <?php 
 	if($this->session->flashdata('validation')){
@@ -93,7 +95,7 @@ $array['data'] = $data;
 					</div>
 					<div class="form-group">
 						<label>Stok Garam</label>
-						<input type="text" name="stok" id="lng" class="form-control" placeholder="Jumlah Stok" required="" value="<?= $data->stok ?>">
+						<input type="text" name="stok" id="lng" class="form-control" placeholder="Jumlah Stok" required="" value="<?= $stokdata->stok ?>">
 					</div>
 				</div>
 			</div>

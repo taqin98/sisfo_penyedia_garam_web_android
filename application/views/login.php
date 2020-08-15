@@ -101,6 +101,17 @@
             		</div>
             		<?php
             	}
+            	if($this->session->flashdata('logout')){
+            		?>
+            		<div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="text-align: left;">
+            			<?= $this->session->flashdata('logout'); ?>
+            			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            				<span aria-hidden="true">&times;</span>
+            			</button>
+            		</div>
+            		<?php
+            	}
             	?>
                 <form method="POST" action="<?= base_url('users/login') ?>">
                     <div class="form-group boxed">

@@ -10,6 +10,10 @@ switch ($_GET['content']) {
 		$this->load->view('users/seller_detail');
 		break;
 
+	case 'seller_list':
+		$this->load->view('users/seller_list');
+		break;
+
 	case 'user_detail':
 		$this->load->view('users/user_detail');
 		break;

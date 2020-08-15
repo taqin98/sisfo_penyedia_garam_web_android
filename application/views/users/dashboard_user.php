@@ -55,7 +55,7 @@ if ($this->session->userdata('level') == 3) {
 </head>
 <body>
     <!-- App Header -->
-    <div class="appHeader scrolled is-active text-white" style="background: #1e74fda1">
+    <div class="appHeader scrolled is-active text-white" style="background: #70a7fe">
     	<div class="left">
     		<a href="#" class="headerButton" hidden="" data-toggle="modal" data-target="#sidebarPanel">
     			<ion-icon name="menu-outline"></ion-icon>
@@ -123,9 +123,14 @@ if ($this->session->userdata('level') == 3) {
     			<ion-icon name="person-circle-outline"></ion-icon>
     		</div>
     	</a>
+        <a href="?content=seller_list" class="item" id="__prevPage">
+            <div class="col">
+                <ion-icon name="list-outline"></ion-icon>
+            </div>
+        </a>
     	<a href="<?= base_url('users/dashboard_user') ?>" class="item">
     		<div class="col">
-    			<ion-icon name="apps-outline"></ion-icon>
+    			<ion-icon name="map-outline"></ion-icon>
     		</div>
     	</a>
     	<a href="<?= base_url('users/logout') ?>" class="item" id="__nextPage">

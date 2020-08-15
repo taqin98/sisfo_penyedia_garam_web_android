@@ -55,7 +55,7 @@ if ($this->session->userdata('level') == 2) {
 </head>
 <body>
     <!-- App Header -->
-    <div class="appHeader scrolled is-active text-white" style="background: #70a7fe">
+    <div class="appHeader bg-primary scrolled is-active text-white">
     	<div class="left">
     		<a href="#" class="headerButton" hidden="" data-toggle="modal" data-target="#sidebarPanel">
     			<ion-icon name="menu-outline"></ion-icon>

@@ -1,6 +1,6 @@
 <?php
 $userid = $_GET['userid'];
-$query 	= $this->db->query('SELECT * from users join profile using(profile_id)');
+$query 	= $this->db->query('SELECT * from users join profile using(profile_id) where users.level=2');
 $data 	= $query->result();
 
 ?>
@@ -19,7 +19,7 @@ $data 	= $query->result();
 					<p><strong><?= $key->full_name ?></strong></p>
 				</div>
 				<div class="col-3">
-					<a href="" class="btn btn-primary col">Detail</a>
+					<a href="?content=seller_detail&userid=<?= $key->user_id ?>" class="btn btn-primary col">Detail</a>
 				</div>
 			</div>
 		</div>

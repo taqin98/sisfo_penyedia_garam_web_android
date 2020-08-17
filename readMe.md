@@ -10,5 +10,5 @@
 ## Server Host
 Heroku Cloud Application Platform
 
-demo web : https://garamapp.herokuapp.com/
-demo android : coming soon
+- demo web : https://garamapp.herokuapp.com/
+- demo android : coming soon

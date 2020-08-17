@@ -1,3 +1,6 @@
+## Server
+- Heroku
+
 ###################
 What is CodeIgniter
 ###################

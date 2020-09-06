@@ -24,11 +24,14 @@ if ($this->session->userdata('level') == 1) {
 					<li class="nav-item">
 						<a class="nav-link text-white" href="?content=home">Home <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="?content=buyer_read">User</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="?content=seller_read">Penyedia</a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Kelola Data User
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="?content=buyer_read">User Buyer (Umum)</a>
+							<a class="dropdown-item" href="?content=seller_read">User Seller (Penyedia)</a>
+						</div>
 					</li>
 				</ul>
 				<div class="form-inline my-2 my-lg-0">

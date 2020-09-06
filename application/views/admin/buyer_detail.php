@@ -4,6 +4,15 @@ $query 	= $this->db->query('SELECT * from users join profile using(profile_id) w
 $data 	= $query->row();
 $array['data'] = $data;
 ?>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mt-2">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Kelola Data User</li>
+        <li class="breadcrumb-item active" aria-current="page">Meihat Detail Data Buyer (Umum)</li>
+    </ol>
+</nav>
+
 <div class="row mt-2">
 	<div class="col-md-6">
 		<div class="card mt-2">

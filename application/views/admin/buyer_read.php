@@ -1,3 +1,10 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mt-2">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Kelola Data User</li>
+        <li class="breadcrumb-item active" aria-current="page">Meihat Data Buyer (Umum)</li>
+    </ol>
+</nav>
 <?php 
     if($this->session->flashdata('notification')){
         ?>

@@ -24,6 +24,14 @@ $array['data'] = $data;
 	}
 ?>
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mt-2">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Kelola Data User</li>
+        <li class="breadcrumb-item active" aria-current="page">Form Edit Data Buyer (Umum)</li>
+    </ol>
+</nav>
+
 <form method="POST" action="<?= base_url(); ?>users/buyer_update">
 	<div class="row mt-2">
 		<div class="col-md-6">

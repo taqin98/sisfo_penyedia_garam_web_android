@@ -52,7 +52,7 @@ if ($this->session->userdata('level') == 1) {
 	</div>
 
 	<div class="container">
-		<?php $this->load->view('admin/dashboard_content'); ?>
+		<?php $this->load->view('admin/dashboard_content'); $this->session->set_flashdata('sukses', '') ?>
 	</div>
 
 	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.5.1.js'); ?>"></script>

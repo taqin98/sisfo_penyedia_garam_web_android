@@ -277,6 +277,10 @@
             </div>
         </div>
     </div>
+    <?php
+    $this->session->set_flashdata('logout','');
+    $this->session->set_flashdata('sukses','');
+    ?>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Horizontal Ads -->

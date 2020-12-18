@@ -161,7 +161,7 @@ class Users extends CI_Controller {
          $this->session->unset_userdata('user_id');
          $this->session->set_flashdata('logout','Anda berhasil logout');
          $this->session->set_flashdata('sukses','');
-         redirect(site_url('users/index'));
+         redirect('users/index', 'refresh');
     }
 
 	public function dashboard_user(){

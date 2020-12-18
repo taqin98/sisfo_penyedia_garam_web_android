@@ -90,7 +90,6 @@
             </div>
             <div class="section mt-1 mb-5">
             	<?php
-                var_dump($this->session->flashdata('sukses'));
             	if($this->session->flashdata('sukses')){
             		?>
             		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert" style="text-align: left;">

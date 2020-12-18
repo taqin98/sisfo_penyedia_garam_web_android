@@ -160,6 +160,7 @@ class Users extends CI_Controller {
          $this->session->unset_userdata('status');
          $this->session->unset_userdata('user_id');
          $this->session->set_flashdata('logout','Anda berhasil logout');
+         $this->session->set_flashdata('sukses','');
          redirect(site_url('users/index'));
     }
 
@@ -173,7 +174,8 @@ class Users extends CI_Controller {
              //alihkan ke halaman login
              redirect('users/index');
          } else {
-            $this->session->set_flashdata('sukses','Selamat Datang di GaramApp');
+            $this->session->set_flashdata('sukses','
+            	');
          	$this->load->view('users/dashboard_user');
          }
 	}

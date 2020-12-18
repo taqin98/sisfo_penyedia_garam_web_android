@@ -28,7 +28,7 @@ if ($data->full_name == NULL) {
 			<div class="section mt-2">
 				<div class="profile-head">
 					<div class="avatar">
-						<img src="https://mobilekit.bragherstudio.com/view7/assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
+						<img src="https://mobilekit.bragherstudio.com/view8/assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
 					</div>
 					<div class="in">
 						<h3 class="name"><?= $getData->username ?></h3>
@@ -47,7 +47,7 @@ if ($data->full_name == NULL) {
 			<div class="section mt-2">
 				<div class="profile-head">
 					<div class="avatar">
-						<img src="https://mobilekit.bragherstudio.com/view7/assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
+						<img src="https://mobilekit.bragherstudio.com/view8/assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
 					</div>
 					<div class="in">
 						<h3 class="name"><?= $data->username ?></h3>

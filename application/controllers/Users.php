@@ -28,6 +28,8 @@ class Users extends CI_Controller {
 	public function index()
 	{
 		// $this->load->view('welcome_message');
+		$this->session->set_flashdata('logout','');
+		$this->session->set_flashdata('sukses','');
 		$this->load->view('login');
 	}
 

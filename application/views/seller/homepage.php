@@ -1,4 +1,4 @@
-<div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 0px;">
+<div class="alert alert-secondary alert-dismissible fade show" role="alert" style="border-radius: 0px;">
 	Anda login sebagai <?= $this->session->userdata('username') ?>. Status : User Penyedia Garam
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true">&times;</span>

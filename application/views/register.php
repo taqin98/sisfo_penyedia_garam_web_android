@@ -52,7 +52,7 @@
 </head>
 <body>
     <!-- App Header -->
-    <div class="appHeader no-border transparent position-absolute">
+    <div class="appHeader no-border">
         <div class="left">
             <a href="javascript:;" class="headerButton goBack" onclick="goBack()">
                 <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
@@ -66,7 +66,22 @@
         </div>
     </div>
     <!-- * App Header -->
-
+    <div class="extraHeader">
+        <ul class="nav nav-tabs style1" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#pilled" role="tab" aria-selected="true">
+                    <ion-icon name="person-circle" role="img" class="md hydrated" aria-label="person circle"></ion-icon>
+                    Buyer
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#lined" role="tab" aria-selected="false">
+                    <ion-icon name="person-circle" role="img" class="md hydrated" aria-label="person circle"></ion-icon>
+                    Seller
+                </a>
+            </li>
+        </ul>
+    </div>
     <!-- Search Component -->
     <div id="search" class="appHeader">
     	<form class="search-form" hidden="">
@@ -84,92 +99,196 @@
     <!-- * Search Component -->
 
     <!-- App Capsule --> <!-- Content -->
-    <div id="appCapsule">
+    <div id="appCapsule" class="extra-header-active">
 
-        <div class="login-form">
-            <div class="section">
-                <h1>Register</h1>
-                <h4>Fill the form to join us</h4>
+
+        <div class="tab-content mt-1">
+
+
+            <!-- Buyer Register -->
+            <div class="tab-pane fade active show" id="pilled" role="tabpanel">
+
+                <div class="section full mt-1">
+                    <div class="section text-center mt-2">
+                        <h4>Jadilah bagian dari GaramApp<br>dengan menjadi calon pembeli cerdas.</h4>
+                    </div>
+                    <div class="section mt-1 mb-5">
+                        <?php 
+                        if($this->session->flashdata('validation')){
+                            ?>
+                            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                                <?= $this->session->flashdata('validation'); ?>
+                                <!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <?php
+                        }
+
+                        if($this->session->flashdata('success')){
+                            ?>
+                            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                                <?= $this->session->flashdata('success'); ?>
+                                <!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <form method="POST" action="<?= base_url('users/account_add') ?>">
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="hidden" name="level" value="3">
+                                    <input type="hidden" name="userid" value="<?= $data->user_id ?>">
+                                    <input type="hidden" name="profileid" value="<?= $data->profile_id ?>">
+                                    <input type="email" name="email" class="form-control" id="email1" placeholder="Alamat Email" required="">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="text" name="username" class="form-control" id="name1" placeholder="Username" required="">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="password" name="password2" class="form-control" id="password2" placeholder="Ulangi Password" required="">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class=" mt-1 text-left">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customChecka1" required="">
+                                    <label class="custom-control-label text-muted" for="customChecka1"><a href="javascript:;">Syarat &amp; Ketentuan berlaku</a></label>
+                                </div>
+
+                            </div>
+
+                            <div class="form-button-group">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg">Register</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="section mt-2 mb-5">
-            	<?php 
-            	if($this->session->flashdata('validation')){
-            		?>
-            		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-            			<?= $this->session->flashdata('validation'); ?>
-            			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
-            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            				<span aria-hidden="true">&times;</span>
-            			</button>
-            		</div>
-            		<?php
-            	}
+            <!-- * Buyer Register -->
 
-            	if($this->session->flashdata('success')){
-            		?>
-            		<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-            			<?= $this->session->flashdata('success'); ?>
-            			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
-            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            				<span aria-hidden="true">&times;</span>
-            			</button>
-            		</div>
-            		<?php
-            	}
-            	?>
-                <form method="POST" action="<?= base_url('users/account_add') ?>">
-                    <div class="form-group boxed">
-                        <div class="input-wrapper">
-                        	<input type="hidden" name="userid" value="<?= $data->user_id ?>">
-                        	<input type="hidden" name="profileid" value="<?= $data->profile_id ?>">
-                            <input type="email" name="email" class="form-control" id="email1" placeholder="Alamat Email" required="">
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
-                        </div>
+
+
+            <!-- Seller Register -->
+            <div class="tab-pane fade" id="lined" role="tabpanel">
+
+                <div class="section full mt-1">
+                    <div class="section text-center mt-2">
+                        <h4>Jadilah bagian dari GaramApp<br>dengan menjadi penyedia stok garam terpercaya..</h4>
                     </div>
+                    <div class="section mt-1 mb-5">
+                        <?php 
+                        if($this->session->flashdata('validation')){
+                            ?>
+                            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                                <?= $this->session->flashdata('validation'); ?>
+                                <!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <?php
+                        }
 
-                    <div class="form-group boxed">
-                        <div class="input-wrapper">
-                            <input type="text" name="username" class="form-control" id="name1" placeholder="Username" required="">
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
-                        </div>
+                        if($this->session->flashdata('success')){
+                            ?>
+                            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                                <?= $this->session->flashdata('success'); ?>
+                                <!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <form method="POST" action="<?= base_url('users/account_add') ?>">
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="hidden" name="level" value="2">
+                                    <input type="hidden" name="userid" value="<?= $data->user_id ?>">
+                                    <input type="hidden" name="profileid" value="<?= $data->profile_id ?>">
+                                    <input type="email" name="email" class="form-control" id="email1" placeholder="Alamat Email" required="">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="text" name="username" class="form-control" id="name1" placeholder="Username" required="">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="password" name="password2" class="form-control" id="password2" placeholder="Ulangi Password" required="">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class=" mt-1 text-left">
+                                <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheckb1">
+                                        <label class="custom-control-label" for="customCheckb1">
+                                            <a href="javascript:;">Syarat &amp; Ketentuan berlaku</a></label>
+                                </div>
+
+                            </div>
+
+                            <div class="form-button-group">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg">Register</button>
+                            </div>
+
+                        </form>
                     </div>
-
-                    <div class="form-group boxed">
-                        <div class="input-wrapper">
-                            <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
-                        </div>
-                    </div>
-
-                    <div class="form-group boxed">
-                        <div class="input-wrapper">
-                            <input type="password" name="password2" class="form-control" id="password2" placeholder="Ulangi Password" required="">
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
-                        </div>
-                    </div>
-
-                    <div class=" mt-1 text-left">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customChecka1" required="">
-                            <label class="custom-control-label text-muted" for="customChecka1">I Agree <a href="javascript:;">Terms &amp; Conditions</a></label>
-                        </div>
-
-                    </div>
-
-                    <div class="form-button-group">
-                        <button type="submit" class="btn btn-primary btn-block btn-lg">Register</button>
-                    </div>
-
-                </form>
+                </div>
             </div>
+            <!-- * Seller Register -->
         </div>
     </div>
     <!-- * App Capsule -->

@@ -55,7 +55,7 @@ if ($this->session->userdata('level') == 2) {
 </head>
 <body>
     <!-- App Header -->
-    <div class="appHeader bg-primary scrolled is-active text-white">
+    <div class="appHeader bg-success scrolled is-active text-white">
     	<div class="left">
     		<a href="#" class="headerButton" hidden="" data-toggle="modal" data-target="#sidebarPanel">
     			<ion-icon name="menu-outline"></ion-icon>
@@ -117,7 +117,7 @@ if ($this->session->userdata('level') == 2) {
 
 
     <!-- App Bottom Menu -->
-    <div class="appBottomMenu">
+    <div class="appBottomMenu bg-success">
     	<a href="?content=seller_detail&userid=<?= $this->session->userdata('user_id') ?>" class="item" id="__prevPage">
     		<div class="col">
     			<ion-icon name="person-circle-outline"></ion-icon>
@@ -236,6 +236,8 @@ if ($this->session->userdata('level') == 2) {
     <!-- Ionicons -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.0.0/dist/ionicons/ionicons.esm.js" async></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.0.0/dist/ionicons/ionicons.js" async></script>
+    <script type="text/javascript">
+    </script>
 </body>
 </html>
 <?php

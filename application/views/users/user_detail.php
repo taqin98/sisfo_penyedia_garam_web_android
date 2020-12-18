@@ -5,7 +5,7 @@ $data 	= $query->row();
 $array['data'] = $data;
 
 // var_dump($data);
-if ($data == NULL) {
+if ($data->full_name == NULL) {
 	?>
 	<div class="alert alert-info alert-dismissible fade show" role="alert">
 		Silahkan lengkapi data profile anda.

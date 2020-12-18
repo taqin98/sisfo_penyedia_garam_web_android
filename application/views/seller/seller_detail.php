@@ -7,11 +7,11 @@ $sql = $this->db->get_where('garam_stock', array('user_id' => $userid));
 $stokdata = $sql->result()[0];
 
 // var_dump($data);
-if ($data == NULL) {
+if ($data->full_name == NULL) {
 	?>
-	<div class="alert alert-info alert-dismissible fade show" role="alert">
-		Silahkan lengkapi data profile anda.
-		<a href="?content=user_edit&userid=<?= $userid ?>">Klik Disini</a>
+	<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+		Silahkan lengkapi data profile anda sebagai seller.
+		<a href="?content=seller_edit&userid=<?= $userid ?>">Klik Disini</a>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -132,7 +132,17 @@ if ($data == NULL) {
 				</ul>
 			</div>
 			<div class="section mb-2">
-				<a href="?content=seller_edit&userid=<?= $userid ?>" class="btn btn-primary col"><ion-icon name="create-outline"></ion-icon> Update Profile</a>
+				<?php
+				if ($this->session->userdata('username') !== $data->username) {
+					?>
+					<a href="https://wa.me/<?= $data->telepon ?>" class="btn btn-primary col"><ion-icon name="send"></ion-icon> Send</a>
+					<?php
+				} else {
+					?>
+					<a href="?content=seller_edit&userid=<?= $userid ?>" class="btn btn-primary col"><ion-icon name="create-outline"></ion-icon> Update Profile</a>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>

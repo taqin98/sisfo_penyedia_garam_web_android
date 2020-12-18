@@ -116,15 +116,25 @@ class Users extends CI_Controller {
 
 	public function account_add()
 	{
+		//level 3 is buyer
+		//level 2 is seller
+		//level 1 is admin
 		$hash = md5($this->input->post('password', TRUE));
 		$user_data = array(
 			'user_id' => $this->input->post('userid', TRUE),
 			'email' => $this->input->post('email', TRUE),
 			'username' => $this->input->post('username', TRUE),
 			'password' => $hash,
-			'level' => 3,
+			'level' => (int)$this->input->post('level', TRUE),
 			'information' => 'user',
 			'profile_id' => $this->input->post('profileid', TRUE)
+		);
+		$user_profile = array(
+			'profile_id' => $this->input->post('profileid', TRUE)
+		);
+
+		$garam_stock = array(
+			'user_id' => $this->input->post('userid', TRUE)
 		);
 
 		// var_dump($user_data);
@@ -135,6 +145,8 @@ class Users extends CI_Controller {
          	return redirect(site_url('users/register'));
 		} else {
 			$this->db->insert('users', $user_data);
+			$this->db->insert('profile', $user_profile);
+			if ((int)$this->input->post('level', TRUE) === 2) $this->db->insert('garam_stock', $garam_stock);
 
 			$this->session->set_flashdata('success','Akun Berhasil didaftarkan');
 			return redirect(site_url('users/register'));
@@ -457,10 +469,12 @@ class Users extends CI_Controller {
 
 		$stok_data = array(
 			'user_id' => $this->input->post('userid', TRUE),
-			'stok' => $this->input->post('stok', TRUE)
+			'stok' => (int)$this->input->post('stok', TRUE)
 		);
 
 		// var_dump('pass from input '.$pass .'<br>', 'New Password ' .$newPass . '<br>');
+		// var_dump('arr user ', $user_data,'<br><br><br>');
+		// var_dump('arr stok ', $stok_data);
 
 		$this->db->where('user_id', $this->input->post('userid', TRUE));
 		$this->db->update('users', $user_data);

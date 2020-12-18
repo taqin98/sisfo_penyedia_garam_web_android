@@ -127,11 +127,13 @@ $stokdata = $sql->result()[0];
 	</form>
 </div>
 
-
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5PFwjCKMLJR-uSQ9Ijg8LLgBKteINOqE&callback=initMap"
 type="text/javascript"></script>
 <script type="text/javascript">
-	var myLatLng = {lat: <?= $data->lat ?>, lng: <?= $data->lng ?>}, marker;
+	var myLatLng = {lat: <?= ($data->lat == '') ? 0 : $data->lat  ?>, lng: <?= ($data->lat == '') ? 0 : $data->lng ?>}, marker;
+	// var myLatLng = {lat:-6.681583, lng:110.658920}, marker;
+	// var xx = <?= $data->lat ?>;
+	// console.log('lat', xx);
 	function initMap() {
 		var propertiPeta = {
 			center:new google.maps.LatLng(-6.681583, 110.658920),
@@ -144,11 +146,12 @@ type="text/javascript"></script>
 		google.maps.event.addListener(peta, 'click', function(event) {
 			taruhMarker(this, event.latLng);
 		});
-
-		marker = new google.maps.Marker({
+		if (myLatLng.lat !== 0) {
+			marker = new google.maps.Marker({
 				position: myLatLng,
 				map: peta
 			});
+		}
 
 		
 		

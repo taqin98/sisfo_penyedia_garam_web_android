@@ -146,6 +146,9 @@ class Users extends CI_Controller {
 		if ($query->num_rows() == 1) {
 			$this->session->set_flashdata('validation','Email Sudah digunakan', 'danger');
          	return redirect(site_url('users/register'));
+		} else if ($this->input->post('password', TRUE) !== $this->input->post('password2', TRUE)){
+			$this->session->set_flashdata('validation','Password tidak sama', 'danger');
+         	return redirect(site_url('users/register'));
 		} else {
 			$this->db->insert('users', $user_data);
 			$this->db->insert('profile', $user_profile);

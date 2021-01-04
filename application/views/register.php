@@ -69,13 +69,13 @@
     <div class="extraHeader">
         <ul class="nav nav-tabs style1" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#pilled" role="tab" aria-selected="true">
+                <a class="nav-link active" data-toggle="tab" href="#pilled" role="tab" aria-selected="true" id="tab">
                     <ion-icon name="person-circle" role="img" class="md hydrated" aria-label="person circle"></ion-icon>
                     Buyer
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#lined" role="tab" aria-selected="false">
+                <a class="nav-link" data-toggle="tab" href="#lined" role="tab" aria-selected="false" id="lined">
                     <ion-icon name="person-circle" role="img" class="md hydrated" aria-label="person circle"></ion-icon>
                     Seller
                 </a>
@@ -396,6 +396,18 @@
 		function goBack() {
 			window.history.back();
 		}
+        $('#tab').on('click', () => { 
+            <?php
+            $this->session->set_flashdata('validation','');
+            $this->session->set_flashdata('success','');
+            ?>
+        });
+        $('#lined').on('click', () => { 
+            <?php
+            $this->session->set_flashdata('validation','');
+            $this->session->set_flashdata('success','');
+            ?>
+        });
 	</script>
 </body>
 </html>

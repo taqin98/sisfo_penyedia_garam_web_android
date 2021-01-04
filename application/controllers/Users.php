@@ -88,6 +88,10 @@ class Users extends CI_Controller {
 
 	public function register()
 	{
+		// $this->session->set_flashdata('validation','');
+		// $this->session->set_flashdata('success','');
+
+		
 		$row  = $this->db->query('SELECT max(user_id) as maxSEL FROM users');
 		$users = $row->result();
 		$kodeSEL = $users[0]->maxSEL;
@@ -143,7 +147,7 @@ class Users extends CI_Controller {
 		// var_dump($user_data);
 		$this->session->set_flashdata('validation','');
     	$this->session->set_flashdata('success','');
-    	
+
 		$query = $this->db->get_where('users',array('email'=> $this->input->post('email', TRUE)) );
 		if ($query->num_rows() == 1) {
 			$this->session->set_flashdata('validation','Email Sudah digunakan', 'danger');

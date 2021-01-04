@@ -41,6 +41,6 @@ switch ($_GET['content']) {
 		break;
 	
 	default:
-		echo 'Menu Home';
+		$this->load->view('admin/home.php');
 		break;
 }

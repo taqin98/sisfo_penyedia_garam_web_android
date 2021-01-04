@@ -27,7 +27,7 @@
     </thead>
     <tbody>
     <?php
-    $query = $this->db->get_where('users', array('information' => 'seller'))->result();
+    $query = $this->db->get_where('users', array('level' => 2))->result();
     foreach ($query as $key) {
         ?>
         <tr>

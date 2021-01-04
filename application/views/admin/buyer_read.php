@@ -34,7 +34,7 @@
     </thead>
     <tbody>
     <?php
-    $query = $this->db->get_where('users', array('information' => 'user'))->result();
+    $query = $this->db->get_where('users', array('level' => 3))->result();
     foreach ($query as $key) {
         ?>
         <tr>

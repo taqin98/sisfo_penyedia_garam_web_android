@@ -119,6 +119,9 @@ class Users extends CI_Controller {
 		//level 3 is buyer
 		//level 2 is seller
 		//level 1 is admin
+		$level = (int)$this->input->post('level', TRUE);
+		$info = ($level == 2) ? 'seller' : 'user' ;
+
 		$hash = md5($this->input->post('password', TRUE));
 		$user_data = array(
 			'user_id' => $this->input->post('userid', TRUE),
@@ -126,7 +129,7 @@ class Users extends CI_Controller {
 			'username' => $this->input->post('username', TRUE),
 			'password' => $hash,
 			'level' => (int)$this->input->post('level', TRUE),
-			'information' => 'user',
+			'information' => $info,
 			'profile_id' => $this->input->post('profileid', TRUE)
 		);
 		$user_profile = array(

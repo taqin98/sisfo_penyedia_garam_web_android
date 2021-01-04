@@ -140,7 +140,7 @@
                     </div>
 
                     <div class="form-button-group">
-                        <button type="submit" class="btn btn-primary btn-block btn-lg">Log in</button>
+                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="login">
                     </div>
 
                 </form>

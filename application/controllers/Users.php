@@ -88,10 +88,7 @@ class Users extends CI_Controller {
 
 	public function register()
 	{
-		// $this->session->set_flashdata('validation','');
-		// $this->session->set_flashdata('success','');
 
-		
 		$row  = $this->db->query('SELECT max(user_id) as maxSEL FROM users');
 		$users = $row->result();
 		$kodeSEL = $users[0]->maxSEL;

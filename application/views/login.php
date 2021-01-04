@@ -149,42 +149,6 @@
 
 
     </div>
-    <!-- <div id="appCapsule">
-
-        <div class="login-form">
-            <div class="section">
-                <h1 class="text-white">Login</h1>
-                <h4 class="text-white">Fill the form to join us</h4>
-            </div>
-            <div class="section mt-2 mb-5">
-            	
-                <form method="POST" action="<?= base_url('users/login'); ?>">
-                    <div class="form-group boxed">
-                        <div class="input-wrapper">
-                            <input type="text" name="username" class="form-control" id="name1" placeholder="Username" required="">
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
-                        </div>
-                    </div>
-
-                    <div class="form-group boxed">
-                        <div class="input-wrapper">
-                            <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
-                        </div>
-                    </div>
-
-                    <div class="form-button-group">
-                        <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div> -->
     <!-- * App Capsule -->
 
 
@@ -192,98 +156,19 @@
     <!-- * App Bottom Menu -->
 
     <!-- App Sidebar -->
-    <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
-    	<div class="modal-dialog" role="document">
-    		<div class="modal-content">
-    			<div class="modal-body p-0">
-
-    				<!-- profile box -->
-    				<div class="profileBox">
-    					<div class="image-wrapper">
-    					</div>
-    					<div class="in">
-    						<strong>Julian Gruber</strong>
-    						<div class="text-muted">
-    							<ion-icon name="location"></ion-icon>
-    							California
-    						</div>
-    					</div>
-    					<a href="javascript:;" class="close-sidebar-button" data-dismiss="modal">
-    						<ion-icon name="close"></ion-icon>
-    					</a>
-    				</div>
-    				<ul class="listview image-listview flush transparent no-line">
-    					<li>
-    						<div class="item">
-    							<div class="icon-box bg-primary">
-    								<ion-icon name="moon-outline"></ion-icon>
-    							</div>
-    							<div class="in">
-    								<div>Dark Mode</div>
-    								<div class="custom-control custom-switch">
-    									<input type="checkbox" class="custom-control-input dark-mode-switch"
-    									id="darkmodesidebar">
-    									<label class="custom-control-label" for="darkmodesidebar"></label>
-    								</div>
-    							</div>
-    						</div>
-    					</li>
-    				</ul>
-    			</div>
-
-    			<!-- sidebar buttons -->
-    			<div class="sidebar-buttons">
-    				<a href="javascript:;" class="button">
-    					<ion-icon name="person-outline"></ion-icon>
-    				</a>
-    				<a href="javascript:;" class="button">
-    					<ion-icon name="archive-outline"></ion-icon>
-    				</a>
-    				<a href="javascript:;" class="button">
-    					<ion-icon name="settings-outline"></ion-icon>
-    				</a>
-    				<a href="javascript:;" class="button">
-    					<ion-icon name="log-out-outline"></ion-icon>
-    				</a>
-    			</div>
-    			<!-- * sidebar buttons -->
-    		</div>
-    	</div>
-    </div>
+    
     <!-- * App Sidebar -->
 
     <!-- welcome notification  -->
-    <div id="notification-welcome" class="notification-box">
-        <div class="notification-dialog android-style">
-            <div class="notification-header">
-                <div class="in">
-                    <img src="/assets/img/icon/72x72.png" alt="image" class="imaged w24">
-                    <strong>Mobilekit</strong>
-                    <span>just now</span>
-                </div>
-                <a href="#" class="close-button">
-                    <ion-icon name="close"></ion-icon>
-                </a>
-            </div>
-            <div class="notification-content">
-                <div class="in">
-                    <h3 class="subtitle">Welcome to Mobilekit</h3>
-                    <div class="text">
-                        Mobilekit is a PWA ready Mobile UI Kit Template.
-                        Great way to start your mobile websites and pwa projects.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <?php
     $this->session->set_flashdata('logout','');
     $this->session->set_flashdata('sukses','');
     ?>
     
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
     <!-- Horizontal Ads -->
-    <ins class="adsbygoogle"
+    <!-- <ins class="adsbygoogle"
     style="display:block"
     data-ad-client="ca-pub-9016802650667695"
     data-ad-slot="9675159011"
@@ -291,7 +176,7 @@
     data-full-width-responsive="true"></ins>
     <script>
        (adsbygoogle = window.adsbygoogle || []).push({});
-   </script>
+   </script> -->
     <!-- * welcome notification -->
     <!-- ///////////// Js Files ////////////////////  -->
     <!-- Jquery -->

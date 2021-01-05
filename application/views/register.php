@@ -107,7 +107,7 @@
 
             <!-- Buyer Register -->
             <div class="tab-pane fade active show" id="pilled" role="tabpanel">
-buyer
+<!-- buyer -->
                 <div class="section full mt-1">
                     <div class="section text-center mt-2">
                         <h4>Jadilah bagian dari GaramApp<br>dengan menjadi calon pembeli cerdas.</h4>
@@ -200,7 +200,7 @@ buyer
 
             <!-- Seller Register -->
             <div class="tab-pane fade" id="lined" role="tabpanel">
-seller
+<!-- seller -->
                 <div class="section full mt-1">
                     <div class="section text-center mt-2">
                         <h4>Jadilah bagian dari GaramApp<br>dengan menjadi penyedia stok garam terpercaya..</h4>

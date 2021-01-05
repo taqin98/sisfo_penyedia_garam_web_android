@@ -69,13 +69,13 @@
     <div class="extraHeader">
         <ul class="nav nav-tabs style1" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#pilled" role="tab" aria-selected="true" id="tab">
+                <a class="nav-link active" data-toggle="tab" href="#pilled" role="tab" aria-selected="true">
                     <ion-icon name="person-circle" role="img" class="md hydrated" aria-label="person circle"></ion-icon>
                     Buyer
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#lined" role="tab" aria-selected="false" id="lined">
+                <a class="nav-link" data-toggle="tab" href="#lined" role="tab" aria-selected="false">
                     <ion-icon name="person-circle" role="img" class="md hydrated" aria-label="person circle"></ion-icon>
                     Seller
                 </a>

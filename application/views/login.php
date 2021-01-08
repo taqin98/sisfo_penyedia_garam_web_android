@@ -80,13 +80,14 @@
     <!-- App Capsule --> <!-- Content -->
     <div id="appCapsule" class="pt-0">
 
-        <div class="login-form mt-1">
-            <div class="section">
-                <img src="https://mobilekit.bragherstudio.com/view8/assets/img/sample/photo/vector4.png" alt="image" class="form-image">
+        <div class="login-form">
+            <div class="section p-0">
+                <!-- <img src="https://mobilekit.bragherstudio.com/view8/assets/img/sample/photo/vector4.png" alt="image" class="form-image"> -->
+                <img src="<?= base_url(); ?>/assets/images/banner_login.jpeg" alt="image" width="100%">
             </div>
             <div class="section mt-1">
-                <h1>Get started</h1>
-                <h4>Fill the form to log in</h4>
+                <h1>Aplikasi Persedian Garam Kedung</h1>
+                <h4>Login disini</h4>
             </div>
             <div class="section mt-1 mb-5">
             	<?php

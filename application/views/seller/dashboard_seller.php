@@ -121,21 +121,25 @@ if ($this->session->userdata('level') == 2) {
     	<a href="?content=seller_detail&userid=<?= $this->session->userdata('user_id') ?>" class="item" id="__prevPage">
     		<div class="col">
     			<ion-icon name="person-circle-outline"></ion-icon>
+                <span class="text-dark">Account</span>
     		</div>
     	</a>
     	<a href="?content=seller_list" class="item" id="__prevPage">
             <div class="col">
                 <ion-icon name="list-outline"></ion-icon>
+                <span class="text-dark">ListView</span>
             </div>
         </a>
     	<a href="<?= base_url('users/dashboard_seller') ?>" class="item">
     		<div class="col">
     			<ion-icon name="map-outline"></ion-icon>
+                <span class="text-dark">MapView</span>
     		</div>
     	</a>
     	<a href="<?= base_url('users/logout') ?>" class="item" id="__nextPage">
     		<div class="col">
     			<ion-icon name="log-out-outline"></ion-icon>
+                <span class="text-dark">Logout</span>
     		</div>
     	</a>
     </div>

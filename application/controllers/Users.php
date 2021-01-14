@@ -36,9 +36,6 @@ class Users extends CI_Controller {
 		$user = $this->input->post('username', TRUE);
 		$pass = $this->input->post('password', TRUE);
 
-		var_dump($user, $pass);
-		// echo "string";
-
 		$query = $this->db->get_where('users',array('username'=>$user,'password' => md5($pass)));
 
 		if($query->num_rows() == 1) {
@@ -59,7 +56,6 @@ class Users extends CI_Controller {
             
             switch ($data_userlevel) {
 				case 1:
-					# code...
 					//redirect ke halaman dashboard
 					redirect('users/dashboard_admin');
 					break;
@@ -183,8 +179,7 @@ class Users extends CI_Controller {
              //alihkan ke halaman login
              redirect('users/index');
          } else {
-            $this->session->set_flashdata('sukses','
-            	');
+            $this->session->set_flashdata('sukses','Selamat Datang di GaramApp');
          	$this->load->view('users/dashboard_user');
          }
 	}

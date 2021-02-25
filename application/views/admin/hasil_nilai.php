@@ -51,11 +51,14 @@
         .card.product-card .card-body {
             padding: 8px;
         }
+        .bg-LULUS {
+        	background: #34C759 !important;
+        }
 
     </style>
 </head>
 <body>
-    <div id="loader">
+	<div id="loader">
         <div class="spinner-border text-primary" role="status"></div>
     </div>
     <!-- App Header -->
@@ -95,75 +98,92 @@
 
     <!-- App Capsule --> <!-- Content -->
     <div id="appCapsule">
-        <div class="header-large-title">
-            <h4 class="subtitle">Sistem Pengambil Keputusan Penerimaan Karyawan di PT SAMI-JF</h4>
-        </div>
-        <div class="section mt-2">
-            <?php if ($this->session->flashdata('success') !== NULL) {
-                ?>
-                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                    <?php echo $this->session->flashdata('success'); ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php
-            } else {
-                echo "";
-            }
-            ?>
-            <div class="subtitle">Calon Karyawan</div>
+        <div class="section full mt-2">
+            <div class="section-title">Hasil Seleksi Penerimaan Karyawan</div>
             <div class="card">
-                <ul class="listview flush transparent image-listview">
-                    <li>
-                        <a href="<?= base_url('profile') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="home"></ion-icon>
-                            </div>
-                            <div class="in">
-                                Data Pelamar
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('profile/input') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                <div>Input Data Pelamar</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+            	<div class="row p-2">
+            		<table class="col-md table" border="1" style="border: 0.1px solid #c3bbbb;">
+            			<tr>
+            				<td colspan="2" class="text-center">Bobot</td>
+            			</tr>
+            			<tr>
+            				<td class="p-1">Psikotest</td>
+            				<td class="p-1"><?= $bobot->b_psikotest; ?></td>
+            			</tr>
+            			<tr>
+            				<td class="p-1">Kesehatan</td>
+            				<td class="p-1"><?= $bobot->b_kesehatan; ?></td>
+            			</tr>
+            			<tr>
+            				<td class="p-1">Wawancara</td>
+            				<td class="p-1"><?= $bobot->b_wawancara; ?></td>
+            			</tr>
+            		</table>
+            		<table class="col table" border="1" style="border: 0.1px solid #c3bbbb;">
+            			<tr>
+            				<td colspan="2" class="text-center">Perhitungan</td>
+            			</tr>
+            			<tr>
+            				<td class="p-1">Nbe (Nilai Bobot Evaluasi)</td>
+            				<td class="p-1">Nbe = Nb x b</td>
+            			</tr>
+            			<tr>
+            				<td class="p-1">Tbe (Total Bobot Evaluasi)</td>
+            				<td class="p-1">Tne = Nbe 1+Nbe 2+Nbe n...</td>
+            			</tr>
+            		</table>
+            	</div>
             </div>
-        </div>
+            <div class="wide-block p-0">
+            	<div class="table-responsive">
+            		<table class="table">
+            			<thead>
+            				<tr>
+            					<th scope="col">No</th>
+            					<th scope="col">KTP</th>
+            					<th scope="col">Nama</th>
+            					<th scope="col text-center">(Nb)<br>Psikotest</th>
+            					<th scope="col">(b)<br>Bobot</th>
+            					<th scope="col text-center">(Nb)<br> Kesehatan</th>
+            					<th scope="col">(b)<br>Bobot</th>
+            					<th scope="col text-center">(Nb)<br> Wawancara</th>
+            					<th scope="col">(b)<br>Bobot</th>
+            					<th scope="col">(Tne)<br>Total</th>
+            					<th scope="col">Standar</th>
+            					<th scope="col">Keterangan</th>
+            					<th colspan="2" class="text-center" scope="col">Aksi</th>
+            				</tr>
+            			</thead>
+            			<tbody>
+            			<?php
+            				$total = 0;
+            				$nomor = 0;
+            				foreach ($data as $key): ?>
+            				<tr class="bg-<?= $key->ket; ?>">
+            					<th scope="row"><?php $nomor++; echo $nomor; ?></th>
+            					<td><a href="<?= base_url('profile/detail/') . $key->ktp_id; ?>"><?= $key->ktp_id; ?></a></td>
+            					<td><?= $key->nama; ?></td>
+            					<td><?= $key->psikotest; ?></td>
+            					<td>0.45</td>
+            					<td><?= $key->kesehatan; ?></td>
+            					<td>0.3</td>
+            					<td><?= $key->wawancara; ?></td>
+            					<td>0.25</td>
+            					<td><?= $key->hasil; ?></td>
+            					<td><?= $bobot->b_standart; ?></td>
+            					<th><?= $key->ket; ?></th>
+            					<td>
+            						<a href="<?= base_url('result/delete/') . $key->ktp_id; ?>" class="btn btn-danger">Hapus</a>
+            					</td>
+            					<td>
+            						<a href="<?= base_url('result/edit/') . $key->ktp_id; ?>" class="btn btn-primary">Edit</a>
+            					</td>
+            				</tr>
+            			<?php endforeach; ?>
+            			</tbody>
+            		</table>
+            	</div>
 
-        <div class="section mt-2">
-            <div class="subtitle">Penerimaan Karyawan</div>
-            <div class="card">
-                <ul class="listview flush transparent image-listview">
-                    <li>
-                        <a href="<?= base_url('result') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="home"></ion-icon>
-                            </div>
-                            <div class="in">
-                                Data Hasil Tes
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('result/input') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                <div>Input Nilai Tes</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
             </div>
         </div>
 

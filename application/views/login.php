@@ -50,137 +50,60 @@
 
     </style>
 </head>
-<body>
-    <!-- App Header -->
-    <div class="appHeader no-border transparent position-absolute">
-        <div class="left">
+<body class="bg-primary">
+    <div class="container">
+       <div class="card col-md-6 mx-auto mt-4">
+        <div class="card-header text-center">
+            <img src="<?= base_url('assets/images/sami.jpg'); ?>" class="card-img">
         </div>
-        <div class="pageTitle text-white"></div>
-        <div class="right">
-        </div>
-    </div>
-    <!-- * App Header -->
-
-    <!-- Search Component -->
-    <div id="search" class="appHeader">
-    	<form class="search-form" hidden="">
-    		<div class="form-group searchbox">
-    			<input type="text" class="form-control" placeholder="Search...">
-    			<i class="input-icon">
-    				<ion-icon name="search-outline"></ion-icon>
-    			</i>
-    			<a href="javascript:;" class="ml-1 close toggle-searchbox">
-    				<ion-icon name="close-circle"></ion-icon>
-    			</a>
-    		</div>
-    	</form>
-    </div>
-    <!-- * Search Component -->
-
-    <!-- App Capsule --> <!-- Content -->
-    <div id="appCapsule" class="pt-0">
-
-        <div class="login-form">
-            <div class="section p-0">
-                <!-- <img src="https://mobilekit.bragherstudio.com/view8/assets/img/sample/photo/vector4.png" alt="image" class="form-image"> -->
-                <img src="<?= base_url(); ?>/assets/images/banner_login.jpeg" alt="image" width="100%">
+        <?php if ($this->session->flashdata('danger') !== '') {
+            ?>
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                <?php echo $this->session->flashdata('danger'); ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="section mt-1">
-                <h1>Aplikasi Persedian Garam Kedung</h1>
-                <h4>Login disini</h4>
+            <?php
+        } else {
+            echo "";
+        }
+        ?>
+         <form method="POST" action="<?= base_url('users/login') ?>">
+            <div class="form-group boxed">
+                <div class="input-wrapper">
+                    <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required="">
+                    <i class="clear-input">
+                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                    </i>
+                </div>
             </div>
-            <div class="section mt-1 mb-5">
-            	<?php
-            	if($this->session->flashdata('sukses')){
-            		?>
-            		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert" style="text-align: left;">
-            			<?= $this->session->flashdata('sukses'); ?>
-            			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
-            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            				<span aria-hidden="true">&times;</span>
-            			</button>
-            		</div>
-            		<?php
-            	}
-            	if($this->session->flashdata('logout')){
-            		?>
-            		<div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="text-align: left;">
-            			<?= $this->session->flashdata('logout'); ?>
-            			<!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
-            			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            				<span aria-hidden="true">&times;</span>
-            			</button>
-            		</div>
-            		<?php
-            	}
-            	?>
-                <form method="POST" action="<?= base_url('users/login') ?>">
-                    <div class="form-group boxed">
-                        <div class="input-wrapper">
-                            <input type="text" class="form-control" id="username" placeholder="Username" name="username" required="">
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
-                        </div>
-                    </div>
 
-                    <div class="form-group boxed">
-                        <div class="input-wrapper">
-                            <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
-                        </div>
-                    </div>
-
-                    <div class="form-links mt-2">
-                        <div>
-                            <a href="<?= base_url('users/register') ?>">Register Now</a>
-                        </div>
-                        <!-- <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div> -->
-                    </div>
-
-                    <div class="form-button-group">
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="login">
-                    </div>
-
-                </form>
+            <div class="form-group boxed">
+                <div class="input-wrapper">
+                    <input type="password" name="password" class="form-control" id="password1" placeholder="Password" required="">
+                    <i class="clear-input">
+                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                    </i>
+                </div>
             </div>
-        </div>
-
-
-    </div>
-    <!-- * App Capsule -->
-
-
-    <!-- App Bottom Menu -->
-    <!-- * App Bottom Menu -->
-
-    <!-- App Sidebar -->
-    
-    <!-- * App Sidebar -->
-
-    <!-- welcome notification  -->
-    
-    <?php
-    $this->session->set_flashdata('logout','');
-    $this->session->set_flashdata('sukses','');
+            <div class="form-links">
+                <div>
+                    <!-- <a href="<?= base_url('users/register') ?>">Register Account</a> -->
+                </div>
+            </div>
+            <div class="form-group boxed">
+                <div class="input-wrapper">
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="login">
+                </div>
+            </div>
+        </form>
+       </div>
+   </div>
+   <?php
+    $this->session->set_flashdata('danger','');
+    $this->session->set_flashdata('success','');
     ?>
-    
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-    <!-- Horizontal Ads -->
-    <!-- <ins class="adsbygoogle"
-    style="display:block"
-    data-ad-client="ca-pub-9016802650667695"
-    data-ad-slot="9675159011"
-    data-ad-format="auto"
-    data-full-width-responsive="true"></ins>
-    <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-   </script> -->
-    <!-- * welcome notification -->
-    <!-- ///////////// Js Files ////////////////////  -->
-    <!-- Jquery -->
     <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.5.1.min.js'); ?>"></script>
     <!-- Bootstrap-->
     <script type="text/javascript" src="<?php echo base_url('assets/js/popper.min.js'); ?>"></script>

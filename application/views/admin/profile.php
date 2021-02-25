@@ -51,11 +51,14 @@
         .card.product-card .card-body {
             padding: 8px;
         }
+        .bg-LULUS {
+        	background: #34C759 !important;
+        }
 
     </style>
 </head>
 <body>
-    <div id="loader">
+	<div id="loader">
         <div class="spinner-border text-primary" role="status"></div>
     </div>
     <!-- App Header -->
@@ -95,75 +98,40 @@
 
     <!-- App Capsule --> <!-- Content -->
     <div id="appCapsule">
-        <div class="header-large-title">
-            <h4 class="subtitle">Sistem Pengambil Keputusan Penerimaan Karyawan di PT SAMI-JF</h4>
-        </div>
-        <div class="section mt-2">
-            <?php if ($this->session->flashdata('success') !== NULL) {
-                ?>
-                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                    <?php echo $this->session->flashdata('success'); ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php
-            } else {
-                echo "";
-            }
-            ?>
-            <div class="subtitle">Calon Karyawan</div>
-            <div class="card">
-                <ul class="listview flush transparent image-listview">
-                    <li>
-                        <a href="<?= base_url('profile') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="home"></ion-icon>
-                            </div>
-                            <div class="in">
-                                Data Pelamar
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('profile/input') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                <div>Input Data Pelamar</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <div class="section full mt-2">
+            <div class="section-title">Daftar Data Pelamar</div>
+            <div class="wide-block p-0">
+            	<div class="table-responsive">
+            		<table class="table">
+            			<thead>
+            				<tr>
+            					<th scope="col">No</th>
+            					<th scope="col">KTP</th>
+            					<th scope="col text-center">Nama</th>
+            					<th scope="col">Alamat</th>
+            					<th scope="col text-center">Nomor Hp</th>
+                                <th scope="col text-center" colspan="2">AKsi</th>
+            				</tr>
+            			</thead>
+            			<tbody>
+            			<?php
+            				$total = 0;
+            				$nomor = 0;
+            				foreach ($data as $key): ?>
+            				<tr>
+            					<td scope="row"><?php $nomor++; echo $nomor; ?></td>
+                                <td scope="row"><?= $key->ktp_id; ?></td>
+                                <td scope="row"><?= $key->nama; ?></td>
+                                <td scope="row"><?= $key->alamat; ?></td>
+                                <td scope="row"><?= $key->hp; ?></td>
+                                <td scope="row"><a href="<?= base_url('profile/delete/') . $key->ktp_id ?>" class="btn btn-danger">Delete</a></td>
+                                <td scope="row"><a href="<?= base_url('profile/edit/') . $key->ktp_id ?>" class="btn btn-primary">Edit</a></td>
+            				</tr>
+            			<?php endforeach; ?>
+            			</tbody>
+            		</table>
+            	</div>
 
-        <div class="section mt-2">
-            <div class="subtitle">Penerimaan Karyawan</div>
-            <div class="card">
-                <ul class="listview flush transparent image-listview">
-                    <li>
-                        <a href="<?= base_url('result') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="home"></ion-icon>
-                            </div>
-                            <div class="in">
-                                Data Hasil Tes
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('result/input') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                <div>Input Nilai Tes</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
             </div>
         </div>
 

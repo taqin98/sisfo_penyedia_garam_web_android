@@ -51,11 +51,14 @@
         .card.product-card .card-body {
             padding: 8px;
         }
+        .bg-LULUS {
+                background: #34C759 !important;
+        }
 
     </style>
 </head>
 <body>
-    <div id="loader">
+        <div id="loader">
         <div class="spinner-border text-primary" role="status"></div>
     </div>
     <!-- App Header -->
@@ -95,77 +98,22 @@
 
     <!-- App Capsule --> <!-- Content -->
     <div id="appCapsule">
-        <div class="header-large-title">
-            <h4 class="subtitle">Sistem Pengambil Keputusan Penerimaan Karyawan di PT SAMI-JF</h4>
-        </div>
-        <div class="section mt-2">
-            <?php if ($this->session->flashdata('success') !== NULL) {
-                ?>
-                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                    <?php echo $this->session->flashdata('success'); ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="card p-0" id="cardContent">
+                <div class="card-body" id="bodyContent">
+                        <div class="section mt-2">
+                                <div class="profile-head">
+                                        <div class="avatar">
+                                                <img src="https://mobilekit.bragherstudio.com/view8/assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
+                                        </div>
+                                        <div class="in">
+                                                <h3 class="name"><?= $this->session->userdata('email') ?></h3>
+                                                <h5 class="subtext"><?= $this->session->userdata('status') ?></h5>
+                                        </div>
+                                </div>
+                        </div>
                 </div>
-                <?php
-            } else {
-                echo "";
-            }
-            ?>
-            <div class="subtitle">Calon Karyawan</div>
-            <div class="card">
-                <ul class="listview flush transparent image-listview">
-                    <li>
-                        <a href="<?= base_url('profile') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="home"></ion-icon>
-                            </div>
-                            <div class="in">
-                                Data Pelamar
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('profile/input') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                <div>Input Data Pelamar</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
-
-        <div class="section mt-2">
-            <div class="subtitle">Penerimaan Karyawan</div>
-            <div class="card">
-                <ul class="listview flush transparent image-listview">
-                    <li>
-                        <a href="<?= base_url('result') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="home"></ion-icon>
-                            </div>
-                            <div class="in">
-                                Data Hasil Tes
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('result/input') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                <div>Input Nilai Tes</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+</div>
 
 
         <!-- app footer -->

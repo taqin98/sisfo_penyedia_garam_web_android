@@ -95,75 +95,67 @@
 
     <!-- App Capsule --> <!-- Content -->
     <div id="appCapsule">
-        <div class="header-large-title">
-            <h4 class="subtitle">Sistem Pengambil Keputusan Penerimaan Karyawan di PT SAMI-JF</h4>
-        </div>
-        <div class="section mt-2">
-            <?php if ($this->session->flashdata('success') !== NULL) {
-                ?>
-                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                    <?php echo $this->session->flashdata('success'); ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+        <div class="section full mt-2">
+            <div class="section-title">Edit Profile Pelamar</div>
+             
+            <div class="wide-block pb-1 pt-1">
                 <?php
-            } else {
-                echo "";
-            }
-            ?>
-            <div class="subtitle">Calon Karyawan</div>
-            <div class="card">
-                <ul class="listview flush transparent image-listview">
-                    <li>
-                        <a href="<?= base_url('profile') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="home"></ion-icon>
-                            </div>
-                            <div class="in">
-                                Data Pelamar
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('profile/input') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                <div>Input Data Pelamar</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                if (validation_errors() !== '') {
+                    ?>
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        <?php echo validation_errors(); ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php
+                }
+                ?>
+                
+                <form method="POST" action="<?= base_url('profile/edit/') . $data->ktp_id; ?>">
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <label class="label" for="name5">Nomor KTP</label>
+                            <input type="text" class="form-control" placeholder="Nomor KTP" name="ktpid" required="" maxlength="50" size="50" value="<?= $data->ktp_id ?>">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <label class="label" for="name5">Nama Lengkap</label>
+                            <input type="text" class="form-control" placeholder="Nama lengkap" name="nama" required="" value="<?= $data->nama ?>">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
 
-        <div class="section mt-2">
-            <div class="subtitle">Penerimaan Karyawan</div>
-            <div class="card">
-                <ul class="listview flush transparent image-listview">
-                    <li>
-                        <a href="<?= base_url('result') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="document-text-outline" role="img" class="md hydrated" aria-label="home"></ion-icon>
-                            </div>
-                            <div class="in">
-                                Data Hasil Tes
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('result/input') ?>" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                <div>Input Nilai Tes</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <label class="label" for="name5">Alamat</label>
+                            <input type="text" name="alm" class="form-control" placeholder="Alamat Lengkap" required="" value="<?= $data->alamat ?>">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <label class="label" for="name5">Nomor Hp</label>
+                            <input type="text" name="hp" class="form-control" placeholder="Nomor Handphone/WhatsApp" required="" value="<?= $data->hp ?>">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Update">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
